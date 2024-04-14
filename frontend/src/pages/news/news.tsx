@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {LatestCard} from '../../components/latest/Card'
-import {Button, Container, Form, Input, Row} from "reactstrap";
+import {Button, Container, Form, Input, Row, Col} from "reactstrap";
 import NewsImage from '../../assets/images/news.jpg'
 import {usePreferences} from "../../services/preferences/preferences";
 import {AsyncPaginate} from "react-select-async-paginate";
@@ -105,10 +105,6 @@ export const News = () => {
 
     return (
         <div className="cstm-container active-cont">
-            <nav className="navbar top-navbar mobile-menu fixed-top bg-white">
-                <a className="btn border-0" id="menu-btn">≡</a>
-            </nav>
-
             <div className="banner-area" style={{backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.25),rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.9)), url(${NewsImage})`}}>
                 <Container className="container">
                     <Form className="row g-3" onSubmit={(e) => handleSearch(e)}>
@@ -178,8 +174,10 @@ export const News = () => {
                 }
                 {
                     newsMetaData && newsMetaData.current_page !== newsMetaData.last_page ?
-                        <Row className='text-center'>
-                            <Button type='button' className='cstm-btn' onClick={handleLoadMore}>Load More</Button>
+                        <Row className='text-center mt-3'>
+                            <Col lg={2} md={4} sm={4}  className='mx-auto'>
+                                <Button type='button' className='cstm-btn w-100' onClick={handleLoadMore}>Load More</Button>
+                            </Col>
                         </Row> : <h6 className='text-center'>No More News Available</h6>
                 }
             </div>

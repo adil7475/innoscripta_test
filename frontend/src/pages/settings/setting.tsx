@@ -23,9 +23,6 @@ export const Setting = () => {
     }
     return (
         <div className="cstm-container active-cont">
-            <nav className="navbar top-navbar mobile-menu fixed-top bg-white">
-                <a className="btn border-0" id="menu-btn">≡</a>
-            </nav>
             <div className="settings-area mx-auto">
                 <Form className="row g-3" onSubmit={(e) => handleSubmit(e)}>
                     <Col md={12}>

@@ -22,7 +22,7 @@ class NewsResource extends JsonResource
             'source' => new SourceResource($this->source),
             'category' => new CategoryResource($this->category),
             'author' => new AuthorResource($this->author),
-            'published_at' => Carbon::parse($this->date)->format('Y-m-d H:i:s'),
+            'published_at' => Carbon::parse($this->date)->format('Y-m-d'),
             'image_url' => $this->image_url
         ];
     }

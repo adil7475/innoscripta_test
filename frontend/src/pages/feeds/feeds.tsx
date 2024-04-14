@@ -20,12 +20,8 @@ export const Feeds = () => {
 
     return (
         <div className="cstm-container active-cont">
-            <nav className="navbar top-navbar mobile-menu fixed-top bg-white">
-                <a className="btn border-0" id="menu-btn">≡</a>
-            </nav>
-
             <div className="row mb-4">
-                <div className="col-md-8">
+                <div className="col-xxl-8 col-xl-7 col-lg-7 col-md-6">
                     <div className="posts-area headlines-post">
                         <h2>Headlines</h2>
                         <div className="row">
@@ -44,7 +40,7 @@ export const Feeds = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-6">
                     <div className="posts-area trending-posts mb-3">
                         <h2>Trending</h2>
                         {
@@ -65,7 +61,7 @@ export const Feeds = () => {
                 </div>
             </div>
 
-            <div className="posts-area">
+            <div className="posts-area latest-posts">
                 <h2>Latest</h2>
                 {
                     news && news.length ?
