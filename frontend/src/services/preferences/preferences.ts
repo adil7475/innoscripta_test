@@ -4,6 +4,7 @@ import { updatePreferences } from '../../services/preferences/preferences-storag
 import { useSetRecoilState } from "recoil";
 import {loader} from "../../store/loader/loader";
 import {Categories, Authors, Sources} from "../../store/preferences/preferences";
+import {toast} from "react-toastify";
 
 
 export const usePreferences = () => {
@@ -86,6 +87,7 @@ export const usePreferences = () => {
             setCategories(category)
             setSources(source)
             setAuthors(author)
+            toast.success("Your preferences has been updated successfully")
         } catch (error) {
             console.error('Error:', error)
         } finally {

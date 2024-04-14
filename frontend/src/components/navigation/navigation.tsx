@@ -8,13 +8,13 @@ export const Navigation = () => {
                 <h3>Innoscripta</h3>
                 <ul className="nav flex-column text-white w-100">
                     <li>
-                        <NavLink to={`/app/feeds`} className="nav-link">Personalized Feed</NavLink>
+                        <NavLink to={`/app/feeds`} className="nav-link">My Feeds</NavLink>
                     </li>
                     <li>
-                        <NavLink to={`/app/news`} className="nav-link">Search News</NavLink>
+                        <NavLink to={`/app/news`} className="nav-link">News</NavLink>
                     </li>
                     <li>
-                        <NavLink to={`/app/settings`} className="nav-link">Settings</NavLink>
+                        <NavLink to={`/app/preferences`} className="nav-link">Preferences</NavLink>
                     </li>
                 </ul>
             </div>

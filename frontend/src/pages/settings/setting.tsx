@@ -11,7 +11,6 @@ export const Setting = () => {
     const userSource = useRecoilValue(Sources)
     const userAuthors = useRecoilValue(Authors)
     const loading: boolean = useRecoilValue(loader)
-    console.log('User Categories:', userCategories)
     const [category, setCategory] = useState(userCategories)
     const [source, setSource] = useState(userSource)
     const [author, setAuthor] = useState(userAuthors)

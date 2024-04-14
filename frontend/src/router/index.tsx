@@ -41,7 +41,7 @@ export const Router  = createBrowserRouter([
                 element: <ProtectedRoute><News /></ProtectedRoute>
             },
             {
-                path: '/app/settings',
+                path: '/app/preferences',
                 element: <ProtectedRoute><Setting /></ProtectedRoute>
             }
         ]
