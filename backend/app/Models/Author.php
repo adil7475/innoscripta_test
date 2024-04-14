@@ -11,7 +11,13 @@ class Author extends Model
 {
     use HasFactory, SoftDeletes, Filterable;
 
+    /**
+     * @var string
+     */
     protected $table = 'authors';
 
+    /**
+     * @var array
+     */
     protected $guarded = [];
 }

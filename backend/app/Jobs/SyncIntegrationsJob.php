@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Enums\QueueEnum;
 use App\Services\Integrations\NewsOrgService;
 use App\Services\Integrations\NYTimesService;
 use App\Services\Integrations\TheGuardianService;
@@ -23,7 +24,7 @@ class SyncIntegrationsJob implements ShouldQueue
     public function __construct(string $integration)
     {
         $this->integration = $integration;
-        $this->onQueue('SYNC_INTEGRATIONS');
+        $this->onQueue(QueueEnum::SYNC_INTEGRATIONS);
     }
 
     /**

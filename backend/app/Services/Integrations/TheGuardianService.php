@@ -5,20 +5,34 @@ namespace App\Services\Integrations;
 use App\Adapter\TheGuardianAdapter;
 use App\Enums\NewsOrgAPIEnum;
 use App\Jobs\SaveNewsJob;
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Http;
 
 class TheGuardianService
 {
+    /**
+     * @var TheGuardianAdapter
+     */
     private TheGuardianAdapter $adapter;
 
+    /**
+     * @var string|Repository|Application|\Illuminate\Foundation\Application|mixed
+     */
     private string $url;
 
+    /**
+     * @param TheGuardianAdapter $theGuardianAdapter
+     */
     public function __construct(TheGuardianAdapter $theGuardianAdapter)
     {
         $this->adapter = $theGuardianAdapter;
         $this->url = config('guardian.api_url');
     }
 
+    /**
+     * @return void
+     */
     public function sync(): void
     {
         $currentPage = 1;
@@ -46,7 +60,7 @@ class TheGuardianService
             //Dispatch data to save news job to save the news
             SaveNewsJob::dispatch($formattedData);
 
-            if (ceil($totalResults / NewsOrgAPIEnum::DEFAULT_PER_PAGE) >= $currentPage) {
+            if (ceil($totalResults / 100) >= $currentPage) {
                 $continue = false;
                 break;
             }

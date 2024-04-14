@@ -263,6 +263,11 @@ abstract class BaselineRepository
      */
     abstract public function model();
 
+    /**
+     * @param $attr
+     * @param $value
+     * @return mixed
+     */
     public function updateOrCreate($attr, $value)
     {
         return $this->model->updateOrCreate($attr, $value);
@@ -326,7 +331,6 @@ abstract class BaselineRepository
 
         return $this;
     }
-
 
     /**
      * @param array $data

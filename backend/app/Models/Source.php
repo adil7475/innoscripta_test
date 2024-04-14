@@ -11,7 +11,13 @@ class Source extends Model
 {
     use HasFactory, SoftDeletes, Filterable;
 
+    /**
+     * @var string
+     */
     protected $table = 'sources';
 
+    /**
+     * @var array
+     */
     protected $guarded = [];
 }

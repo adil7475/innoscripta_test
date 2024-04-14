@@ -5,20 +5,34 @@ namespace App\Services\Integrations;
 use App\Adapter\NYTimesAdapter;
 use App\Enums\NYTimesEnum;
 use App\Jobs\SaveNewsJob;
+use Illuminate\Config\Repository;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Facades\Http;
 
 class NYTimesService
 {
+    /**
+     * @var NYTimesAdapter
+     */
     private NYTimesAdapter $adapter;
 
+    /**
+     * @var string|Repository|Application|\Illuminate\Foundation\Application|mixed
+     */
     private string $url;
 
+    /**
+     * @param NYTimesAdapter $adapter
+     */
     public function __construct(NYTimesAdapter $adapter)
     {
         $this->adapter = $adapter;
         $this->url = config('nytimes.api_url');
     }
 
+    /**
+     * @return void
+     */
     public function sync(): void
     {
         $currentPage = 1;
@@ -58,7 +72,7 @@ class NYTimesService
                 $continue = false;
                 break;
             }
-            sleep(NYTimesEnum::SLEEP_TIME);
+            sleep(5);
         }
     }
 }

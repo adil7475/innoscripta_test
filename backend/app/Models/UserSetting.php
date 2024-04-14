@@ -9,20 +9,40 @@ class UserSetting extends Model
 {
     use HasFactory;
 
+    /**
+     * @var string
+     */
     protected $table = 'user_settings';
+
+    /**
+     * @var array
+     */
     protected $guarded = [];
 
+    /**
+     * @param string|null $value
+     * @return null
+     */
     public function getSourcesAttribute(?string $value)
     {
         if (is_null($value)) return null;
         $sources = json_decode($value);
         return Source::whereIn('id', $sources)->get();
     }
+
+    /**
+     * @param array $value
+     * @return void
+     */
     public function setSourcesAttribute(array $value): void
     {
         $this->attributes['sources'] = json_encode($value);
     }
 
+    /**
+     * @param string|null $value
+     * @return null
+     */
     public function getCategoriesAttribute(?string $value)
     {
         if (is_null($value)) return null;
@@ -30,11 +50,20 @@ class UserSetting extends Model
 
         return Category::whereIn('id', $categories)->get();
     }
+
+    /**
+     * @param array $value
+     * @return void
+     */
     public function setCategoriesAttribute(array $value): void
     {
         $this->attributes['categories'] = json_encode($value);
     }
 
+    /**
+     * @param string|null $value
+     * @return null
+     */
     public function getAuthorsAttribute(?string $value)
     {
         if (is_null($value)) return null;
@@ -42,6 +71,11 @@ class UserSetting extends Model
 
         return Author::whereIn('id', $authors)->get();
     }
+
+    /**
+     * @param array $value
+     * @return void
+     */
     public function setAuthorsAttribute(array $value): void
     {
         $this->attributes['authors'] = json_encode($value);
