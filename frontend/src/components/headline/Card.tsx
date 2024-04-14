@@ -9,7 +9,7 @@ export const HeadlineCard = ({title, description, author, imageUrl}: HeadlineNew
     return (
         <div className="mb-3 col-md-12">
             <Card>
-                <img src={image} className="card-img-top" alt="News Image"/>
+                <img src={image} className="card-img-top" alt="News"/>
                 <CardBody>
                     <p className="card-text mb-1">
                         <small className="text-muted">Posted by: {author ?? 'Unknown'}</small>

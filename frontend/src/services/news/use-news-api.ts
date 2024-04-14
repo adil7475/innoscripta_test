@@ -1,7 +1,6 @@
-import {useRecoilValue, useSetRecoilState} from "recoil";
+import {useSetRecoilState} from "recoil";
 import {loader} from "../../store/loader/loader";
 import {useAxios} from "../../hooks/use-axios";
-import {NewsType} from "../../types/news";
 
 export const useNewsAPI = () => {
     const setLoader = useSetRecoilState(loader)

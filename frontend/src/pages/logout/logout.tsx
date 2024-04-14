@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {removeToken} from "../../services/authentication/authentication";
 import {useNavigate} from "react-router-dom";
 import {removePreferences} from "../../services/preferences/preferences-storage";

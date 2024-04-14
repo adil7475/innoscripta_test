@@ -9,7 +9,7 @@ export const TrendingCard = ({title, publishedAt, imageUrl}: TrendingNewsCardTyp
         <Card className="mb-3 col-md-12">
             <div className="row g-0">
                 <div className="col-md-3 col-4">
-                    <img src={newsImage} alt="News Image" className="img-fluid rounded-start"/>
+                    <img src={newsImage} alt="News" className="img-fluid rounded-start"/>
                 </div>
                 <div className="col-md-9 col-8">
                     <CardBody>

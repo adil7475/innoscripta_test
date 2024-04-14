@@ -77,11 +77,7 @@ export const usePreferences = () => {
             const sources = preferenceRequestParams(source)
             const authors = preferenceRequestParams(author)
 
-            const data = await put(`/settings`, {
-                categories,
-                authors,
-                sources
-            })
+            await put(`/settings`, {categories, authors, sources})
 
             //Update preference in localStorage
             updatePreferences(category, source, author)

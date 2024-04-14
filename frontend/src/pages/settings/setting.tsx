@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
-import {Col, Form, Label, Input, Button} from "reactstrap";
+import React, {useState} from "react";
+import {Col, Form, Label, Button} from "reactstrap";
 import { AsyncPaginate } from "react-select-async-paginate";
 import { usePreferences } from "../../services/preferences/preferences";
 import { useRecoilValue } from "recoil";
-import {Categories, Authors, Sources} from "../../store/preferences/preferences";
 import {loader} from "../../store/loader/loader";
+import {Categories, Authors, Sources} from "../../store/preferences/preferences";
 
 export const Setting = () => {
     const userCategories = useRecoilValue(Categories)

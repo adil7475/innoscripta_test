@@ -1,7 +1,7 @@
 import React from 'react';
+import * as Yup from "yup"
 import {Button, Card, CardBody, CardTitle, Col, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
 import {NavLink} from "react-router-dom";
-import * as Yup from "yup"
 import { useFormik } from "formik";
 import { useRecoilValue } from "recoil";
 import {serverErrors} from "../../store/server-error/server-error";
