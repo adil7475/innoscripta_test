@@ -86,6 +86,10 @@ abstract class BaselineRepository
         $this->pagination = $pagination;
     }
 
+    /**
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @throws RepositoryException
+     */
     public function index()
     {
         $resource = $this->indexResource();
@@ -94,21 +98,36 @@ abstract class BaselineRepository
         return $resource;
     }
 
+    /**
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
     public function indexResource()
     {
         return $this->resource::collection($this->getModelData());
     }
 
+    /**
+     * @param $data
+     * @return mixed
+     */
     public function wrapData($data)
     {
         return $this->resource ? new $this->resource($data) : $data;
     }
 
+    /**
+     * @param $filter
+     * @return mixed
+     */
     public function filter($filter)
     {
         return $this->model->filter($filter);
     }
 
+    /**
+     * @param Filter|null $filter
+     * @return mixed
+     */
     public function getModelData(Filter $filter = null)
     {
         $model = $filter ? $this->filter($filter) : $this->model;
@@ -120,6 +139,11 @@ abstract class BaselineRepository
         return $this->pagination ? $model->paginate($this->pagination) : $model->get();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * @throws RepositoryException
+     */
     public function show($id)
     {
         $model = $this;
@@ -135,6 +159,11 @@ abstract class BaselineRepository
 
         return $resource;
     }
+
+    /**
+     * @return JsonResource|ResourceCollection
+     * @throws RepositoryException
+     */
     public function makeResource()
     {
         if ($this->resource) {
@@ -150,6 +179,13 @@ abstract class BaselineRepository
         return $this->resource;
     }
 
+    /**
+     * @param array $data
+     * @param $force
+     * @param $resource
+     * @return mixed
+     * @throws RepositoryException
+     */
     public function create(array $data, $force = true, $resource = true)
     {
         $model = $force ? $this->model->forceCreate($data) : $this->model->create($data);
@@ -159,6 +195,14 @@ abstract class BaselineRepository
         return $resource;
     }
 
+    /**
+     * @param array $data
+     * @param int|null $id
+     * @param bool $force
+     * @param bool $resource
+     * @return mixed
+     * @throws RepositoryException
+     */
     public function update(array $data, int $id = null, bool $force = true, bool $resource = true)
     {
         if (is_null($id) and $this->model instanceof Builder) {
@@ -187,6 +231,9 @@ abstract class BaselineRepository
         $this->makeResource();
     }
 
+    /**
+     * @return $this
+     */
     public function withBoot()
     {
         $this->boot = true;

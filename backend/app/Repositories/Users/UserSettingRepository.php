@@ -9,8 +9,6 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class UserSettingRepository extends BaselineRepository
 {
     /**
-     * Define repository's model
-     *
      * @return string
      */
     public function model(): string
@@ -19,8 +17,6 @@ class UserSettingRepository extends BaselineRepository
     }
 
     /**
-     * Return list of sources
-     *
      * @return ResourceCollection
      */
     public function indexResource(): ResourceCollection
@@ -29,8 +25,6 @@ class UserSettingRepository extends BaselineRepository
     }
 
     /**
-     * Update or create user's preferences
-     *
      * @param  array  $data
      * @param  int|null  $id
      * @param  bool  $force

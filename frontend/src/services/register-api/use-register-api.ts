@@ -5,6 +5,7 @@ import {serverErrors} from "../../store/server-error/server-error";
 import {useNavigate} from "react-router-dom";
 import {RegisterResponseModel} from "@/types/authentication";
 import {setToken} from "../authentication/authentication";
+import {setPreferences} from "../../services/preferences/preferences-storage";
 
 export const useRegisterAPI = () => {
     const setLoader = useSetRecoilState(loader)
@@ -22,6 +23,7 @@ export const useRegisterAPI = () => {
             })
 
             setToken(data.data.access_token)
+            setPreferences(data.data.user.settings)
             navigate('/app/feeds')
         } catch (error: any) {
             if (error?.status === 422) {

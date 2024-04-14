@@ -7,7 +7,7 @@ import axios, {
 import {getToken} from "../../services/authentication/authentication";
 
 export const useAxios = () => {
-    const baseUrl = process.env.REACT_API_URL ?? 'http://127.0.0.1:8000/api'
+    const baseUrl = process.env.REACT_APP_API_URL
     const request = (method: Method) => {
         return async <
             T = unknown,

@@ -33,7 +33,14 @@ export type LoginResponseModel = {
 }
 
 export type RegisterResponseModel = {
-    data: {access_token: string},
+    data: {
+        user: {
+            id: number,
+            name: string,
+            settings: Settings
+        }
+        access_token: string
+    },
     message: string,
     status: 'success' | 'fail'
 }
