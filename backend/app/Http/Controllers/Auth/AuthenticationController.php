@@ -19,6 +19,11 @@ class AuthenticationController extends Controller
 {
     use AccessToken;
 
+    /**
+     * @param RegisterRequest $request
+     * @param UserService $userService
+     * @return JsonResponse
+     */
     public function register(RegisterRequest $request, UserService $userService): JsonResponse
     {
         $data = $request->validated();
@@ -37,6 +42,10 @@ class AuthenticationController extends Controller
         );
     }
 
+    /**
+     * @param LoginRequest $request
+     * @return JsonResponse
+     */
     public function login(LoginRequest $request): JsonResponse
     {
         $data = $request->validated();
