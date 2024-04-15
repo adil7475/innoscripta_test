@@ -27,12 +27,6 @@ services:
     volumes:
       - ./frontend:/var/www/html/frontend
     working_dir: /var/www/html/frontend
-
-  react-run:
-    image: node:latest
-    volumes:
-      - ./frontend:/var/www/html/frontend
-    working_dir: /var/www/html/frontend
     command: sh -c "npm install && npm run build && HTTPS=true npm start"
 
   composer:
@@ -62,6 +56,7 @@ services:
   mysql:
     image: mysql:8.0.27
     container_name: db
+    platform: linux/x86_64
     environment:
       MYSQL_DATABASE: news_feeds
       MYSQL_USER: root
