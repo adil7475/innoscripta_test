@@ -35,43 +35,29 @@ class NewsOrgService
      */
     public function sync(): void
     {
-        $currentPage = 1;
-        $continue = true;
-
-        while ($continue) {
-            $response = Http::get(
-                $this->url,
-                $this->adapter->formatRequest($currentPage)
-            );
-            if ($response->failed()) {
-                $continue = false;
-                break;
-            }
-
-            $data = $response->json('articles');
-            $totalResults = $response->json('totalResults');
-
-            if (empty($data)) {
-                $continue = false;
-                break;
-            }
-
-            $formattedData = $this->adapter->formatResponse($data);
-            //Dispatch data to save news job to save the news
-            SaveNewsJob::dispatch($formattedData);
-
-            if (ceil($totalResults / 100) >= $currentPage) {
-                $continue = false;
-                break;
-            }
-
-            // temporary condition as News API returns millions of results
-            if ($currentPage == 1) {
-                $continue = false;
-                break;
-            }
-
-            $currentPage++;
+        /**
+         * As API Return a lot of pages so we are only getting data from first pages
+         * If we want to get data from all pages then we can do it with loop
+         */
+        $response = Http::get(
+            $this->url,
+            $this->adapter->formatRequest(1)
+        );
+        if ($response->failed()) {
+            /**
+             * TODO::Need to notify use why api call not successful
+             */
+            return;
         }
+
+        $data = $response->json('articles');
+
+        if (empty($data)) {
+            return;
+        }
+
+        $formattedData = $this->adapter->formatResponse($data);
+        //Dispatch data to save news job to save the news
+        SaveNewsJob::dispatch($formattedData);
     }
 }

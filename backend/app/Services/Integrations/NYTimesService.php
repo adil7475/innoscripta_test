@@ -35,44 +35,32 @@ class NYTimesService
      */
     public function sync(): void
     {
-        $currentPage = 1;
-        $continue = true;
+        /**
+         * As API Return a lot of pages so we are only getting data from first pages
+         * If we want to get data from all pages then we can do it with loop
+         */
 
-        while ($continue) {
-            $response = Http::get(
-                $this->url,
-                $this->adapter->formatRequest($currentPage)
-            );
+        $response = Http::get(
+            $this->url,
+            $this->adapter->formatRequest(1)
+        );
 
-            if ($response->failed()) {
-                $continue = false;
-                break;
-            }
-
-            $responseObject = $response->json();
-
-            $data = $responseObject['response']['docs'];
-
-            if (empty($data)) {
-                $continue = false;
-                break;
-            }
-
-            $formattedData = $this->adapter->formatResponse($data);
-            SaveNewsJob::dispatch($formattedData);
-
-            if ((int)floor($responseObject['response']['meta']['hits']) === $currentPage) {
-                $continue = false;
-                break;
-            }
-            $currentPage++;
-
-            // temporary condition as API returns a large number of results
-            if ($currentPage === 3) {
-                $continue = false;
-                break;
-            }
-            sleep(5);
+        if ($response->failed()) {
+            /**
+             * TODO::Need to notify use why api call not successful
+             */
+            return;
         }
+
+        $responseObject = $response->json();
+
+        $data = $responseObject['response']['docs'];
+
+        if (empty($data)) {
+            return;
+        }
+
+        $formattedData = $this->adapter->formatResponse($data);
+        SaveNewsJob::dispatch($formattedData);
     }
 }
