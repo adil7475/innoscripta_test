@@ -74,6 +74,7 @@ export const News = () => {
         e.preventDefault()
         if (! validate()) {
             toast.error('Please select any fields to search.')
+            return
         }
         const queryStr = processQueryParams()
         const {data: newsData, meta: newsMetaData} = await getNews(queryStr)
